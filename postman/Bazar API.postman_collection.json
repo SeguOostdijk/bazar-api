@@ -1,0 +1,1924 @@
+{
+	"info": {
+		"_postman_id": "8b936552-9133-4b5e-a386-09c9e8352848",
+		"name": "Bazar API",
+		"description": "Documentación de la API para la gestión de ventas de un bazar.",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "39103088"
+	},
+	"item": [
+		{
+			"name": "ventas",
+			"item": [
+				{
+					"name": "editar",
+					"item": [
+						{
+							"name": "Editar una venta",
+							"request": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									},
+									{
+										"key": "Accept",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"id_venta\": 1,\n  \"id_cliente\": 5,\n  \"items\": [\n    {\n      \"id_producto\": 1,\n      \"cantidad\": 2\n    },\n    {\n      \"id_producto\": 1,\n      \"cantidad\": 2\n    }\n  ]\n}",
+									"options": {
+										"raw": {
+											"headerFamily": "json",
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}/ventas/editar",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"ventas",
+										"editar"
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "Venta actualizada",
+									"originalRequest": {
+										"method": "PUT",
+										"header": [
+											{
+												"key": "Content-Type",
+												"value": "application/json"
+											},
+											{
+												"key": "Accept",
+												"value": "application/json"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n  \"id_venta\": 1,\n  \"id_cliente\": 5,\n  \"items\": [\n    {\n      \"id_producto\": 1,\n      \"cantidad\": 2\n    },\n    {\n      \"id_producto\": 1,\n      \"cantidad\": 2\n    }\n  ]\n}",
+											"options": {
+												"raw": {
+													"headerFamily": "json",
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "http://localhost:8080/ventas/editar",
+											"protocol": "http",
+											"host": [
+												"localhost"
+											],
+											"port": "8080",
+											"path": [
+												"ventas",
+												"editar"
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										}
+									],
+									"cookie": [],
+									"body": "{\n  \"id_venta\": 1,\n  \"id_cliente\": 4,\n  \"nombre\": \"Laura\",\n  \"apellido\": \"Gómez\",\n  \"fecha\": \"2025-08-05\",\n  \"total\": 38000,\n  \"detalles\": [\n    {\n      \"id_producto\": 1,\n      \"nombreProducto\": \"Cafetera\",\n      \"cantidad\": 2,\n      \"subtotal\": 15000\n    },\n    {\n      \"id_producto\": 1,\n      \"nombreProducto\": \"Cafetera\",\n      \"cantidad\": 2,\n      \"subtotal\": 15000\n    }\n  ]\n}"
+								},
+								{
+									"name": "Id de cliente o producto asociado a la venta no encontrado",
+									"originalRequest": {
+										"method": "PUT",
+										"header": [
+											{
+												"key": "Content-Type",
+												"value": "application/json"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n  \"id_venta\": 1,\n  \"id_cliente\": 5,\n  \"items\": [\n    {\n      \"id_producto\": 1,\n      \"cantidad\": 2\n    },\n    {\n      \"id_producto\": 1,\n      \"cantidad\": 2\n    }\n  ]\n}",
+											"options": {
+												"raw": {
+													"headerFamily": "json",
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{baseUrl}}/ventas/editar",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"ventas",
+												"editar"
+											]
+										}
+									},
+									"status": "Not Found",
+									"code": 404,
+									"_postman_previewlanguage": "text",
+									"header": [],
+									"cookie": [],
+									"body": null
+								},
+								{
+									"name": "Stock insufuciente de algún producto con ID específico",
+									"originalRequest": {
+										"method": "PUT",
+										"header": [
+											{
+												"key": "Content-Type",
+												"value": "application/json"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n  \"id_venta\": 1,\n  \"id_cliente\": 5,\n  \"items\": [\n    {\n      \"id_producto\": 1,\n      \"cantidad\": 2\n    },\n    {\n      \"id_producto\": 1,\n      \"cantidad\": 2\n    }\n  ]\n}",
+											"options": {
+												"raw": {
+													"headerFamily": "json",
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{baseUrl}}/ventas/editar",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"ventas",
+												"editar"
+											]
+										}
+									},
+									"status": "Conflict",
+									"code": 409,
+									"_postman_previewlanguage": "text",
+									"header": [],
+									"cookie": [],
+									"body": null
+								}
+							]
+						}
+					]
+				},
+				{
+					"name": "crear",
+					"item": [
+						{
+							"name": "Registrar una venta",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									},
+									{
+										"key": "Accept",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"id_venta\": 1,\n  \"id_cliente\": 5,\n  \"items\": [\n    {\n      \"id_producto\": 1,\n      \"cantidad\": 2\n    },\n    {\n      \"id_producto\": 1,\n      \"cantidad\": 2\n    }\n  ]\n}",
+									"options": {
+										"raw": {
+											"headerFamily": "json",
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}/ventas/crear",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"ventas",
+										"crear"
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "Venta creada exitosamente",
+									"originalRequest": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "Content-Type",
+												"value": "application/json"
+											},
+											{
+												"key": "Accept",
+												"value": "application/json"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n  \"id_venta\": 1,\n  \"id_cliente\": 5,\n  \"items\": [\n    {\n      \"id_producto\": 1,\n      \"cantidad\": 2\n    },\n    {\n      \"id_producto\": 1,\n      \"cantidad\": 2\n    }\n  ]\n}",
+											"options": {
+												"raw": {
+													"headerFamily": "json",
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "http://localhost:8080/ventas/crear",
+											"protocol": "http",
+											"host": [
+												"localhost"
+											],
+											"port": "8080",
+											"path": [
+												"ventas",
+												"crear"
+											]
+										}
+									},
+									"status": "Created",
+									"code": 201,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										}
+									],
+									"cookie": [],
+									"body": "{\n  \"id_venta\": 1,\n  \"id_cliente\": 4,\n  \"nombre\": \"Laura\",\n  \"apellido\": \"Gómez\",\n  \"fecha\": \"2025-08-05\",\n  \"total\": 38000,\n  \"detalles\": [\n    {\n      \"id_producto\": 1,\n      \"nombreProducto\": \"Cafetera\",\n      \"cantidad\": 2,\n      \"subtotal\": 15000\n    },\n    {\n      \"id_producto\": 1,\n      \"nombreProducto\": \"Cafetera\",\n      \"cantidad\": 2,\n      \"subtotal\": 15000\n    }\n  ]\n}"
+								},
+								{
+									"name": "Id de cliente o producto asociado a la venta no encontrado",
+									"originalRequest": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "Content-Type",
+												"value": "application/json"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n  \"id_venta\": 1,\n  \"id_cliente\": 5,\n  \"items\": [\n    {\n      \"id_producto\": 1,\n      \"cantidad\": 2\n    },\n    {\n      \"id_producto\": 1,\n      \"cantidad\": 2\n    }\n  ]\n}",
+											"options": {
+												"raw": {
+													"headerFamily": "json",
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{baseUrl}}/ventas/crear",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"ventas",
+												"crear"
+											]
+										}
+									},
+									"status": "Not Found",
+									"code": 404,
+									"_postman_previewlanguage": "text",
+									"header": [],
+									"cookie": [],
+									"body": null
+								},
+								{
+									"name": "Stock insufuciente de algún producto con ID específico",
+									"originalRequest": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "Content-Type",
+												"value": "application/json"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n  \"id_venta\": 1,\n  \"id_cliente\": 5,\n  \"items\": [\n    {\n      \"id_producto\": 1,\n      \"cantidad\": 2\n    },\n    {\n      \"id_producto\": 1,\n      \"cantidad\": 2\n    }\n  ]\n}",
+											"options": {
+												"raw": {
+													"headerFamily": "json",
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{baseUrl}}/ventas/crear",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"ventas",
+												"crear"
+											]
+										}
+									},
+									"status": "Conflict",
+									"code": 409,
+									"_postman_previewlanguage": "text",
+									"header": [],
+									"cookie": [],
+									"body": null
+								}
+							]
+						}
+					]
+				},
+				{
+					"name": "{fecha_venta}",
+					"item": [
+						{
+							"name": "Obtener monto total y cantidad de ventas por fecha",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrl}}/ventas/:fecha_venta",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"ventas",
+										":fecha_venta"
+									],
+									"variable": [
+										{
+											"key": "fecha_venta",
+											"value": "1956-04-15",
+											"description": "(Required) Fecha de la venta (YYYY-MM-DD)"
+										}
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "Ventas encontradas",
+									"originalRequest": {
+										"method": "GET",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "application/json"
+											}
+										],
+										"url": {
+											"raw": "http://localhost:8080/ventas/:fecha_venta",
+											"protocol": "http",
+											"host": [
+												"localhost"
+											],
+											"port": "8080",
+											"path": [
+												"ventas",
+												":fecha_venta"
+											],
+											"variable": [
+												{
+													"key": "fecha_venta"
+												}
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										}
+									],
+									"cookie": [],
+									"body": "{\n  \"fecha\": \"2025-08-06\",\n  \"montoAcumulado\": 15,\n  \"cantidadVentas\": 2\n}"
+								},
+								{
+									"name": "No se encontraron ventas para esa fecha",
+									"originalRequest": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "{{baseUrl}}/ventas/:fecha_venta",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"ventas",
+												":fecha_venta"
+											],
+											"variable": [
+												{
+													"key": "fecha_venta"
+												}
+											]
+										}
+									},
+									"status": "Not Found",
+									"code": 404,
+									"_postman_previewlanguage": "text",
+									"header": [],
+									"cookie": [],
+									"body": null
+								}
+							]
+						}
+					]
+				},
+				{
+					"name": "mayor_venta",
+					"item": [
+						{
+							"name": "Obtener la venta de mayor monto total registrado",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrl}}/ventas/mayor_venta",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"ventas",
+										"mayor_venta"
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "Venta encontrada",
+									"originalRequest": {
+										"method": "GET",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "application/json"
+											}
+										],
+										"url": {
+											"raw": "http://localhost:8080/ventas/mayor_venta",
+											"protocol": "http",
+											"host": [
+												"localhost"
+											],
+											"port": "8080",
+											"path": [
+												"ventas",
+												"mayor_venta"
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										}
+									],
+									"cookie": [],
+									"body": "{\n  \"id_venta\": 1,\n  \"total\": 3989.6685860373627,\n  \"cantidadProductos\": 4,\n  \"nombre_apellido\": \"Juan Perez\"\n}"
+								}
+							]
+						}
+					]
+				},
+				{
+					"name": "eliminar",
+					"item": [
+						{
+							"name": "Eliminar una venta por su ID",
+							"request": {
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrl}}/ventas/eliminar?id_venta=4468",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"ventas",
+										"eliminar"
+									],
+									"query": [
+										{
+											"key": "id_venta",
+											"value": "4468",
+											"description": "(Required) ID de la venta"
+										}
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "Venta eliminada",
+									"originalRequest": {
+										"method": "DELETE",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "application/json"
+											}
+										],
+										"url": {
+											"raw": "http://localhost:8080/ventas/eliminar?id_venta=4468",
+											"protocol": "http",
+											"host": [
+												"localhost"
+											],
+											"port": "8080",
+											"path": [
+												"ventas",
+												"eliminar"
+											],
+											"query": [
+												{
+													"key": "id_venta",
+													"value": "4468",
+													"description": "(Required) ID de la venta"
+												}
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										}
+									],
+									"cookie": [],
+									"body": "{\n  \"id_venta\": 1,\n  \"id_cliente\": 4,\n  \"nombre\": \"Laura\",\n  \"apellido\": \"Gómez\",\n  \"fecha\": \"2025-08-05\",\n  \"total\": 38000,\n  \"detalles\": [\n    {\n      \"id_producto\": 1,\n      \"nombreProducto\": \"Cafetera\",\n      \"cantidad\": 2,\n      \"subtotal\": 15000\n    },\n    {\n      \"id_producto\": 1,\n      \"nombreProducto\": \"Cafetera\",\n      \"cantidad\": 2,\n      \"subtotal\": 15000\n    }\n  ]\n}"
+								},
+								{
+									"name": "Id de cliente o producto asociado a la venta no encontrado",
+									"originalRequest": {
+										"method": "DELETE",
+										"header": [],
+										"url": {
+											"raw": "{{baseUrl}}/ventas/eliminar?id_venta=4468",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"ventas",
+												"eliminar"
+											],
+											"query": [
+												{
+													"key": "id_venta",
+													"value": "4468",
+													"description": "(Required) ID de la venta"
+												}
+											]
+										}
+									},
+									"status": "Not Found",
+									"code": 404,
+									"_postman_previewlanguage": "text",
+									"header": [],
+									"cookie": [],
+									"body": null
+								}
+							]
+						}
+					]
+				},
+				{
+					"name": "Obtener todas las ventas",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/ventas",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"ventas"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Lista completa de ventas",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json"
+									}
+								],
+								"url": {
+									"raw": "http://localhost:8080/ventas",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"ventas"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"body": "[\n  {\n    \"id_venta\": 1,\n    \"id_cliente\": 4,\n    \"nombre\": \"Laura\",\n    \"apellido\": \"Gómez\",\n    \"fecha\": \"2025-08-05\",\n    \"total\": 38000,\n    \"detalles\": [\n      {\n        \"id_producto\": 1,\n        \"nombreProducto\": \"Cafetera\",\n        \"cantidad\": 2,\n        \"subtotal\": 15000\n      },\n      {\n        \"id_producto\": 1,\n        \"nombreProducto\": \"Cafetera\",\n        \"cantidad\": 2,\n        \"subtotal\": 15000\n      }\n    ]\n  },\n  {\n    \"id_venta\": 1,\n    \"id_cliente\": 4,\n    \"nombre\": \"Laura\",\n    \"apellido\": \"Gómez\",\n    \"fecha\": \"2025-08-05\",\n    \"total\": 38000,\n    \"detalles\": [\n      {\n        \"id_producto\": 1,\n        \"nombreProducto\": \"Cafetera\",\n        \"cantidad\": 2,\n        \"subtotal\": 15000\n      },\n      {\n        \"id_producto\": 1,\n        \"nombreProducto\": \"Cafetera\",\n        \"cantidad\": 2,\n        \"subtotal\": 15000\n      }\n    ]\n  }\n]"
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "productos",
+			"item": [
+				{
+					"name": "editar",
+					"item": [
+						{
+							"name": "Editar un producto",
+							"request": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									},
+									{
+										"key": "Accept",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"id\": 1,\n  \"nombre\": \"Cafetera\",\n  \"marca\": \"Nespresso\",\n  \"costo\": 7500,\n  \"cantidad_disponible\": 25\n}",
+									"options": {
+										"raw": {
+											"headerFamily": "json",
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}/productos/editar",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"productos",
+										"editar"
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "Producto actualizado",
+									"originalRequest": {
+										"method": "PUT",
+										"header": [
+											{
+												"key": "Content-Type",
+												"value": "application/json"
+											},
+											{
+												"key": "Accept",
+												"value": "application/json"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n  \"id\": 1,\n  \"nombre\": \"Cafetera\",\n  \"marca\": \"Nespresso\",\n  \"costo\": 7500,\n  \"cantidad_disponible\": 25\n}",
+											"options": {
+												"raw": {
+													"headerFamily": "json",
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "http://localhost:8080/productos/editar",
+											"protocol": "http",
+											"host": [
+												"localhost"
+											],
+											"port": "8080",
+											"path": [
+												"productos",
+												"editar"
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										}
+									],
+									"cookie": [],
+									"body": "{\n  \"id\": 1,\n  \"nombre\": \"Cafetera\",\n  \"marca\": \"Nespresso\",\n  \"costo\": 7500,\n  \"cantidad_disponible\": 25\n}"
+								},
+								{
+									"name": "Producto no encontrado",
+									"originalRequest": {
+										"method": "PUT",
+										"header": [
+											{
+												"key": "Content-Type",
+												"value": "application/json"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n  \"id\": 1,\n  \"nombre\": \"Cafetera\",\n  \"marca\": \"Nespresso\",\n  \"costo\": 7500,\n  \"cantidad_disponible\": 25\n}",
+											"options": {
+												"raw": {
+													"headerFamily": "json",
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{baseUrl}}/productos/editar",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"productos",
+												"editar"
+											]
+										}
+									},
+									"status": "Not Found",
+									"code": 404,
+									"_postman_previewlanguage": "text",
+									"header": [],
+									"cookie": [],
+									"body": null
+								}
+							]
+						}
+					]
+				},
+				{
+					"name": "crear",
+					"item": [
+						{
+							"name": "Crear un nuevo producto",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									},
+									{
+										"key": "Accept",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"id\": 1,\n  \"nombre\": \"Cafetera\",\n  \"marca\": \"Nespresso\",\n  \"costo\": 7500,\n  \"cantidad_disponible\": 25\n}",
+									"options": {
+										"raw": {
+											"headerFamily": "json",
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}/productos/crear",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"productos",
+										"crear"
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "Producto creado correctamente",
+									"originalRequest": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "Content-Type",
+												"value": "application/json"
+											},
+											{
+												"key": "Accept",
+												"value": "application/json"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n  \"id\": 1,\n  \"nombre\": \"Cafetera\",\n  \"marca\": \"Nespresso\",\n  \"costo\": 7500,\n  \"cantidad_disponible\": 25\n}",
+											"options": {
+												"raw": {
+													"headerFamily": "json",
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "http://localhost:8080/productos/crear",
+											"protocol": "http",
+											"host": [
+												"localhost"
+											],
+											"port": "8080",
+											"path": [
+												"productos",
+												"crear"
+											]
+										}
+									},
+									"status": "Created",
+									"code": 201,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										}
+									],
+									"cookie": [],
+									"body": "{\n  \"id\": 1,\n  \"nombre\": \"Cafetera\",\n  \"marca\": \"Nespresso\",\n  \"costo\": 7500,\n  \"cantidad_disponible\": 25\n}"
+								},
+								{
+									"name": "Error interno",
+									"originalRequest": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "Content-Type",
+												"value": "application/json"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n  \"id\": 1,\n  \"nombre\": \"Cafetera\",\n  \"marca\": \"Nespresso\",\n  \"costo\": 7500,\n  \"cantidad_disponible\": 25\n}",
+											"options": {
+												"raw": {
+													"headerFamily": "json",
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{baseUrl}}/productos/crear",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"productos",
+												"crear"
+											]
+										}
+									},
+									"status": "Internal Server Error",
+									"code": 500,
+									"_postman_previewlanguage": "text",
+									"header": [],
+									"cookie": [],
+									"body": null
+								}
+							]
+						}
+					]
+				},
+				{
+					"name": "falta_stock",
+					"item": [
+						{
+							"name": "Obtener productos con stock menor a 5",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrl}}/productos/falta_stock",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"productos",
+										"falta_stock"
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "Lista de productos con stock limitado",
+									"originalRequest": {
+										"method": "GET",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "application/json"
+											}
+										],
+										"url": {
+											"raw": "http://localhost:8080/productos/falta_stock",
+											"protocol": "http",
+											"host": [
+												"localhost"
+											],
+											"port": "8080",
+											"path": [
+												"productos",
+												"falta_stock"
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										}
+									],
+									"cookie": [],
+									"body": "[\n  {\n    \"id\": 1,\n    \"nombre\": \"Cafetera\",\n    \"marca\": \"Nespresso\",\n    \"costo\": 7500,\n    \"cantidad_disponible\": 25\n  },\n  {\n    \"id\": 1,\n    \"nombre\": \"Cafetera\",\n    \"marca\": \"Nespresso\",\n    \"costo\": 7500,\n    \"cantidad_disponible\": 25\n  }\n]"
+								}
+							]
+						}
+					]
+				},
+				{
+					"name": "eliminar",
+					"item": [
+						{
+							"name": "Eliminar un producto por su código",
+							"request": {
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrl}}/productos/eliminar?codigo_producto=4468",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"productos",
+										"eliminar"
+									],
+									"query": [
+										{
+											"key": "codigo_producto",
+											"value": "4468",
+											"description": "(Required) Código del producto"
+										}
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "Producto eliminado",
+									"originalRequest": {
+										"method": "DELETE",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "application/json"
+											}
+										],
+										"url": {
+											"raw": "http://localhost:8080/productos/eliminar?codigo_producto=4468",
+											"protocol": "http",
+											"host": [
+												"localhost"
+											],
+											"port": "8080",
+											"path": [
+												"productos",
+												"eliminar"
+											],
+											"query": [
+												{
+													"key": "codigo_producto",
+													"value": "4468",
+													"description": "(Required) Código del producto"
+												}
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										}
+									],
+									"cookie": [],
+									"body": "{\n  \"id\": 1,\n  \"nombre\": \"Cafetera\",\n  \"marca\": \"Nespresso\",\n  \"costo\": 7500,\n  \"cantidad_disponible\": 25\n}"
+								},
+								{
+									"name": "Producto no encontrado",
+									"originalRequest": {
+										"method": "DELETE",
+										"header": [],
+										"url": {
+											"raw": "{{baseUrl}}/productos/eliminar?codigo_producto=4468",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"productos",
+												"eliminar"
+											],
+											"query": [
+												{
+													"key": "codigo_producto",
+													"value": "4468",
+													"description": "(Required) Código del producto"
+												}
+											]
+										}
+									},
+									"status": "Not Found",
+									"code": 404,
+									"_postman_previewlanguage": "text",
+									"header": [],
+									"cookie": [],
+									"body": null
+								}
+							]
+						}
+					]
+				},
+				{
+					"name": "Obtener todos los productos",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/productos",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"productos"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Lista completa de productos",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json"
+									}
+								],
+								"url": {
+									"raw": "http://localhost:8080/productos",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"productos"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"body": "[\n  {\n    \"id\": 1,\n    \"nombre\": \"Cafetera\",\n    \"marca\": \"Nespresso\",\n    \"costo\": 7500,\n    \"cantidad_disponible\": 25\n  },\n  {\n    \"id\": 1,\n    \"nombre\": \"Cafetera\",\n    \"marca\": \"Nespresso\",\n    \"costo\": 7500,\n    \"cantidad_disponible\": 25\n  }\n]"
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "clientes",
+			"item": [
+				{
+					"name": "editar",
+					"item": [
+						{
+							"name": "Editar un cliente",
+							"request": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									},
+									{
+										"key": "Accept",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"id\": 9694,\n  \"nombre\": \"Juan\",\n  \"apellido\": \"Pérez\",\n  \"dni\": \"12345678\"\n}",
+									"options": {
+										"raw": {
+											"headerFamily": "json",
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}/clientes/editar",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"clientes",
+										"editar"
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "Cliente actualizado",
+									"originalRequest": {
+										"method": "PUT",
+										"header": [
+											{
+												"key": "Content-Type",
+												"value": "application/json"
+											},
+											{
+												"key": "Accept",
+												"value": "application/json"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n  \"id\": 9694,\n  \"nombre\": \"Juan\",\n  \"apellido\": \"Pérez\",\n  \"dni\": \"12345678\"\n}",
+											"options": {
+												"raw": {
+													"headerFamily": "json",
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "http://localhost:8080/clientes/editar",
+											"protocol": "http",
+											"host": [
+												"localhost"
+											],
+											"port": "8080",
+											"path": [
+												"clientes",
+												"editar"
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										}
+									],
+									"cookie": [],
+									"body": "{\n  \"id\": 9694,\n  \"nombre\": \"Juan\",\n  \"apellido\": \"Pérez\",\n  \"dni\": \"12345678\"\n}"
+								},
+								{
+									"name": "Cliente no encontrado",
+									"originalRequest": {
+										"method": "PUT",
+										"header": [
+											{
+												"key": "Content-Type",
+												"value": "application/json"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n  \"id\": 9694,\n  \"nombre\": \"Juan\",\n  \"apellido\": \"Pérez\",\n  \"dni\": \"12345678\"\n}",
+											"options": {
+												"raw": {
+													"headerFamily": "json",
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{baseUrl}}/clientes/editar",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"clientes",
+												"editar"
+											]
+										}
+									},
+									"status": "Not Found",
+									"code": 404,
+									"_postman_previewlanguage": "text",
+									"header": [],
+									"cookie": [],
+									"body": null
+								}
+							]
+						}
+					]
+				},
+				{
+					"name": "crear",
+					"item": [
+						{
+							"name": "Crear un nuevo cliente",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									},
+									{
+										"key": "Accept",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"id\": 9694,\n  \"nombre\": \"Juan\",\n  \"apellido\": \"Pérez\",\n  \"dni\": \"12345678\"\n}",
+									"options": {
+										"raw": {
+											"headerFamily": "json",
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}/clientes/crear",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"clientes",
+										"crear"
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "Cliente creado correctamente",
+									"originalRequest": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "Content-Type",
+												"value": "application/json"
+											},
+											{
+												"key": "Accept",
+												"value": "application/json"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n  \"id\": 9694,\n  \"nombre\": \"Juan\",\n  \"apellido\": \"Pérez\",\n  \"dni\": \"12345678\"\n}",
+											"options": {
+												"raw": {
+													"headerFamily": "json",
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "http://localhost:8080/clientes/crear",
+											"protocol": "http",
+											"host": [
+												"localhost"
+											],
+											"port": "8080",
+											"path": [
+												"clientes",
+												"crear"
+											]
+										}
+									},
+									"status": "Created",
+									"code": 201,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										}
+									],
+									"cookie": [],
+									"body": "{\n  \"id\": 9694,\n  \"nombre\": \"Juan\",\n  \"apellido\": \"Pérez\",\n  \"dni\": \"12345678\"\n}"
+								},
+								{
+									"name": "Error interno del servidor",
+									"originalRequest": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "Content-Type",
+												"value": "application/json"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n  \"id\": 9694,\n  \"nombre\": \"Juan\",\n  \"apellido\": \"Pérez\",\n  \"dni\": \"12345678\"\n}",
+											"options": {
+												"raw": {
+													"headerFamily": "json",
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{baseUrl}}/clientes/crear",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"clientes",
+												"crear"
+											]
+										}
+									},
+									"status": "Internal Server Error",
+									"code": 500,
+									"_postman_previewlanguage": "text",
+									"header": [],
+									"cookie": [],
+									"body": null
+								}
+							]
+						}
+					]
+				},
+				{
+					"name": "eliminar",
+					"item": [
+						{
+							"name": "Eliminar un cliente por su ID",
+							"request": {
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrl}}/clientes/eliminar?id_cliente=4468",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"clientes",
+										"eliminar"
+									],
+									"query": [
+										{
+											"key": "id_cliente",
+											"value": "4468",
+											"description": "(Required) ID del cliente"
+										}
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "Cliente eliminado",
+									"originalRequest": {
+										"method": "DELETE",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "application/json"
+											}
+										],
+										"url": {
+											"raw": "http://localhost:8080/clientes/eliminar?id_cliente=4468",
+											"protocol": "http",
+											"host": [
+												"localhost"
+											],
+											"port": "8080",
+											"path": [
+												"clientes",
+												"eliminar"
+											],
+											"query": [
+												{
+													"key": "id_cliente",
+													"value": "4468",
+													"description": "(Required) ID del cliente"
+												}
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										}
+									],
+									"cookie": [],
+									"body": "{\n  \"id\": 9694,\n  \"nombre\": \"Juan\",\n  \"apellido\": \"Pérez\",\n  \"dni\": \"12345678\"\n}"
+								},
+								{
+									"name": "Cliente no encontrado",
+									"originalRequest": {
+										"method": "DELETE",
+										"header": [],
+										"url": {
+											"raw": "{{baseUrl}}/clientes/eliminar?id_cliente=4468",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"clientes",
+												"eliminar"
+											],
+											"query": [
+												{
+													"key": "id_cliente",
+													"value": "4468",
+													"description": "(Required) ID del cliente"
+												}
+											]
+										}
+									},
+									"status": "Not Found",
+									"code": 404,
+									"_postman_previewlanguage": "text",
+									"header": [],
+									"cookie": [],
+									"body": null
+								}
+							]
+						}
+					]
+				},
+				{
+					"name": "Obtener todos los clientes",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/clientes",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"clientes"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Lista completa de clientes",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json"
+									}
+								],
+								"url": {
+									"raw": "http://localhost:8080/clientes",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"clientes"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"body": "[\n  {\n    \"id\": 102,\n    \"nombre\": \"Juan\",\n    \"apellido\": \"Pérez\",\n    \"dni\": \"12345678\"\n  },\n  {\n    \"id\": 7539,\n    \"nombre\": \"Juan\",\n    \"apellido\": \"Pérez\",\n    \"dni\": \"12345678\"\n  }\n]"
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "venta",
+			"item": [
+				{
+					"name": "Obtener una venta por su id",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/venta?id_venta=4468",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"venta"
+							],
+							"query": [
+								{
+									"key": "id_venta",
+									"value": "4468",
+									"description": "(Required) ID de la venta"
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Producto encontrado",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrl}}/venta?id_venta=4468",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"venta"
+									],
+									"query": [
+										{
+											"key": "id_venta",
+											"value": "4468",
+											"description": "(Required) ID de la venta"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"body": "{\n  \"id_venta\": 1,\n  \"id_cliente\": 4,\n  \"nombre\": \"Laura\",\n  \"apellido\": \"Gómez\",\n  \"fecha\": \"2025-08-05\",\n  \"total\": 38000,\n  \"detalles\": [\n    {\n      \"id_producto\": 1,\n      \"nombreProducto\": \"Cafetera\",\n      \"cantidad\": 2,\n      \"subtotal\": 15000\n    },\n    {\n      \"id_producto\": 1,\n      \"nombreProducto\": \"Cafetera\",\n      \"cantidad\": 2,\n      \"subtotal\": 15000\n    }\n  ]\n}"
+						},
+						{
+							"name": "Producto no encontrado",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/venta?id_venta=4468",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"venta"
+									],
+									"query": [
+										{
+											"key": "id_venta",
+											"value": "4468",
+											"description": "(Required) ID de la venta"
+										}
+									]
+								}
+							},
+							"status": "Not Found",
+							"code": 404,
+							"_postman_previewlanguage": "text",
+							"header": [],
+							"cookie": [],
+							"body": null
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "producto",
+			"item": [
+				{
+					"name": "Obtener producto por código",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/producto?codigo_producto=4468",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"producto"
+							],
+							"query": [
+								{
+									"key": "codigo_producto",
+									"value": "4468",
+									"description": "(Required) Código del producto"
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Producto encontrado",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrl}}/producto?codigo_producto=4468",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"producto"
+									],
+									"query": [
+										{
+											"key": "codigo_producto",
+											"value": "4468",
+											"description": "(Required) Código del producto"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"body": "{\n  \"id\": 1,\n  \"nombre\": \"Cafetera\",\n  \"marca\": \"Nespresso\",\n  \"costo\": 7500,\n  \"cantidad_disponible\": 25\n}"
+						},
+						{
+							"name": "Producto no encontrado",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/producto?codigo_producto=4468",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"producto"
+									],
+									"query": [
+										{
+											"key": "codigo_producto",
+											"value": "4468",
+											"description": "(Required) Código del producto"
+										}
+									]
+								}
+							},
+							"status": "Not Found",
+							"code": 404,
+							"_postman_previewlanguage": "text",
+							"header": [],
+							"cookie": [],
+							"body": null
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "cliente",
+			"item": [
+				{
+					"name": "Obtener un cliente por su ID",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/cliente?id_cliente=4468",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"cliente"
+							],
+							"query": [
+								{
+									"key": "id_cliente",
+									"value": "4468",
+									"description": "(Required) ID del cliente"
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Cliente encontrado",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrl}}/cliente?id_cliente=4468",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"cliente"
+									],
+									"query": [
+										{
+											"key": "id_cliente",
+											"value": "4468",
+											"description": "(Required) ID del cliente"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"body": "{\n  \"id\": 9694,\n  \"nombre\": \"Juan\",\n  \"apellido\": \"Pérez\",\n  \"dni\": \"12345678\"\n}"
+						},
+						{
+							"name": "Cliente no encontrado",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/cliente?id_cliente=4468",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"cliente"
+									],
+									"query": [
+										{
+											"key": "id_cliente",
+											"value": "4468",
+											"description": "(Required) ID del cliente"
+										}
+									]
+								}
+							},
+							"status": "Not Found",
+							"code": 404,
+							"_postman_previewlanguage": "text",
+							"header": [],
+							"cookie": [],
+							"body": null
+						}
+					]
+				}
+			]
+		}
+	],
+	"variable": [
+		{
+			"key": "baseUrl",
+			"value": "http://localhost:8080"
+		}
+	]
+}

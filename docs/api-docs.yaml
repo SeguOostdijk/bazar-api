@@ -1,0 +1,564 @@
+openapi: 3.0.1
+info:
+  title: Bazar API
+  description: Documentación de la API para la gestión de ventas de un bazar.
+  version: "1.0"
+servers:
+- url: http://localhost:8080
+  description: Generated server url
+tags:
+- name: Ventas
+  description: Venta de productos de bazar
+- name: Clientes
+  description: Operaciones relacionadas con los clientes
+- name: Productos
+  description: Gestión de productos del bazar
+paths:
+  /ventas/editar:
+    put:
+      tags:
+      - Ventas
+      summary: Editar una venta
+      operationId: updateVenta
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/VentaRequestDTO"
+        required: true
+      responses:
+        "404":
+          description: Id de cliente o producto asociado a la venta no encontrado
+          content:
+            '*/*':
+              schema:
+                type: object
+        "409":
+          description: Stock insufuciente de algún producto con ID específico
+          content:
+            '*/*':
+              schema:
+                type: object
+        "200":
+          description: Venta actualizada
+          content:
+            '*/*':
+              schema:
+                type: object
+  /productos/editar:
+    put:
+      tags:
+      - Productos
+      summary: Editar un producto
+      operationId: updateProducto
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/ProductoDTO"
+        required: true
+      responses:
+        "404":
+          description: Producto no encontrado
+        "200":
+          description: Producto actualizado
+          content:
+            '*/*':
+              schema:
+                type: object
+  /clientes/editar:
+    put:
+      tags:
+      - Clientes
+      summary: Editar un cliente
+      operationId: updateCliente
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/ClienteDTO"
+        required: true
+      responses:
+        "404":
+          description: Cliente no encontrado
+        "200":
+          description: Cliente actualizado
+          content:
+            '*/*':
+              schema:
+                type: object
+  /ventas/crear:
+    post:
+      tags:
+      - Ventas
+      summary: Registrar una venta
+      operationId: saveVenta
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/VentaRequestDTO"
+        required: true
+      responses:
+        "201":
+          description: Producto creado exitosamente
+          content:
+            '*/*':
+              schema:
+                type: object
+        "404":
+          description: Id de cliente o producto asociado a la venta no encontrado
+          content:
+            '*/*':
+              schema:
+                type: object
+        "409":
+          description: Stock insufuciente de algún producto con ID específico
+          content:
+            '*/*':
+              schema:
+                type: object
+  /productos/crear:
+    post:
+      tags:
+      - Productos
+      summary: Crear un nuevo producto
+      operationId: setProducto
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/ProductoDTO"
+        required: true
+      responses:
+        "500":
+          description: Error interno
+          content:
+            '*/*':
+              schema:
+                type: object
+        "201":
+          description: Producto creado correctamente
+          content:
+            '*/*':
+              schema:
+                type: object
+  /clientes/crear:
+    post:
+      tags:
+      - Clientes
+      summary: Crear un nuevo cliente
+      operationId: saveCliente
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/ClienteDTO"
+        required: true
+      responses:
+        "500":
+          description: Error interno del servidor
+        "201":
+          description: Cliente creado correctamente
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ClienteDTO"
+  /ventas:
+    get:
+      tags:
+      - Ventas
+      summary: Obtener todas las ventas
+      operationId: getVentas
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/VentaResponseDTO"
+  /ventas/{fecha_venta}:
+    get:
+      tags:
+      - Ventas
+      summary: Obtener monto total y cantidad de ventas por fecha
+      operationId: getVentasPorDia
+      parameters:
+      - name: fecha_venta
+        in: path
+        description: Fecha de la venta (YYYY-MM-DD)
+        required: true
+        schema:
+          type: string
+          format: date
+      responses:
+        "200":
+          description: Ventas encontradas
+          content:
+            '*/*':
+              schema:
+                $ref: "#/components/schemas/DatosDeVentaPorDiaDTO"
+        "404":
+          description: No se encontraron ventas para esa fecha
+          content:
+            '*/*':
+              schema:
+                $ref: "#/components/schemas/DatosDeVentaPorDiaDTO"
+  /ventas/mayor_venta:
+    get:
+      tags:
+      - Ventas
+      summary: Obtener la venta de mayor monto total registrado
+      operationId: getMayorVenta
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: "#/components/schemas/MayorVentaDTO"
+  /venta:
+    get:
+      tags:
+      - Ventas
+      summary: Obtener una venta por su id
+      operationId: getVenta
+      parameters:
+      - name: id_venta
+        in: query
+        required: true
+        schema:
+          type: integer
+          format: int64
+      responses:
+        "404":
+          description: Producto no encontrado
+          content:
+            '*/*':
+              schema:
+                type: object
+        "200":
+          description: Producto encontrado
+          content:
+            '*/*':
+              schema:
+                type: object
+  /productos:
+    get:
+      tags:
+      - Productos
+      summary: Obtener todos los productos
+      operationId: getProductos
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/ProductoDTO"
+  /productos/falta_stock:
+    get:
+      tags:
+      - Productos
+      summary: Obtener productos con stock menor a 5
+      operationId: getProductosEscasos
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/ProductoDTO"
+  /producto:
+    get:
+      tags:
+      - Productos
+      summary: Obtener producto por código
+      operationId: getProducto
+      parameters:
+      - name: codigo_producto
+        in: query
+        description: Código del producto
+        required: true
+        schema:
+          type: integer
+          format: int64
+      responses:
+        "404":
+          description: Producto no encontrado
+          content:
+            '*/*':
+              schema:
+                type: object
+        "200":
+          description: Producto encontrado
+          content:
+            '*/*':
+              schema:
+                type: object
+  /clientes:
+    get:
+      tags:
+      - Clientes
+      summary: Obtener todos los clientes
+      operationId: getClientes
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/ClienteDTO"
+  /cliente:
+    get:
+      tags:
+      - Clientes
+      summary: Obtener un cliente por su ID
+      operationId: getCliente
+      parameters:
+      - name: id_cliente
+        in: query
+        description: ID del cliente
+        required: true
+        schema:
+          type: integer
+          format: int64
+      responses:
+        "404":
+          description: Cliente no encontrado
+        "200":
+          description: Cliente encontrado
+          content:
+            '*/*':
+              schema:
+                type: object
+  /ventas/eliminar:
+    delete:
+      tags:
+      - Ventas
+      summary: Eliminar una venta por su ID
+      operationId: deleteVenta
+      parameters:
+      - name: id_venta
+        in: query
+        required: true
+        schema:
+          type: integer
+          format: int64
+      responses:
+        "404":
+          description: Id de cliente o producto asociado a la venta no encontrado
+          content:
+            '*/*':
+              schema:
+                type: object
+        "200":
+          description: Venta eliminada
+          content:
+            '*/*':
+              schema:
+                type: object
+  /productos/eliminar:
+    delete:
+      tags:
+      - Productos
+      summary: Eliminar un producto por su código
+      operationId: deleteProducto
+      parameters:
+      - name: codigo_producto
+        in: query
+        description: Código del producto
+        required: true
+        schema:
+          type: integer
+          format: int64
+      responses:
+        "200":
+          description: Producto eliminado
+          content:
+            '*/*':
+              schema:
+                type: object
+        "404":
+          description: Producto no encontrado
+          content:
+            '*/*':
+              schema:
+                type: object
+  /clientes/eliminar:
+    delete:
+      tags:
+      - Clientes
+      summary: Eliminar un cliente por su ID
+      operationId: deleteCliente
+      parameters:
+      - name: id_cliente
+        in: query
+        description: ID del cliente
+        required: true
+        schema:
+          type: integer
+          format: int64
+      responses:
+        "404":
+          description: Cliente no encontrado
+        "200":
+          description: Cliente eliminado
+          content:
+            '*/*':
+              schema:
+                type: object
+components:
+  schemas:
+    VentaItemDTO:
+      type: object
+      properties:
+        id_producto:
+          type: integer
+          format: int64
+        cantidad:
+          type: integer
+          format: int32
+      description: Lista de productos vendidos
+    VentaRequestDTO:
+      type: object
+      properties:
+        id_venta:
+          type: integer
+          description: ID de la venta
+          format: int64
+          example: 1
+        id_cliente:
+          type: integer
+          description: ID del cliente
+          format: int64
+          example: 5
+        items:
+          type: array
+          description: Lista de productos vendidos
+          items:
+            $ref: "#/components/schemas/VentaItemDTO"
+      description: DTO para enviar datos al crear o editar una venta
+    ProductoDTO:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+        nombre:
+          type: string
+        marca:
+          type: string
+        costo:
+          type: number
+          format: double
+        cantidad_disponible:
+          type: number
+          format: double
+    ClienteDTO:
+      type: object
+      properties:
+        id:
+          type: integer
+          description: ID único del cliente
+          format: int64
+          example: 1
+        nombre:
+          type: string
+          description: Nombre del cliente
+          example: Juan
+        apellido:
+          type: string
+          description: Apellido del cliente
+          example: Pérez
+        dni:
+          type: string
+          description: Número de DNI del cliente
+          example: "12345678"
+      description: DTO que representa a un cliente del bazar
+    DetalleVentaDTO:
+      type: object
+      properties:
+        id_producto:
+          type: integer
+          format: int64
+        nombreProducto:
+          type: string
+        cantidad:
+          type: integer
+          format: int32
+        subtotal:
+          type: number
+          format: double
+      description: Detalles de la venta
+    VentaResponseDTO:
+      type: object
+      properties:
+        id_venta:
+          type: integer
+          description: ID de la venta
+          format: int64
+          example: 1
+        id_cliente:
+          type: integer
+          description: ID del cliente
+          format: int64
+          example: 4
+        nombre:
+          type: string
+          description: Nombre del cliente
+          example: Laura
+        apellido:
+          type: string
+          description: Apellido del cliente
+          example: Gómez
+        fecha:
+          type: string
+          description: Fecha de la venta
+          format: date
+          example: 2025-08-05
+        total:
+          type: number
+          description: Total de la venta
+          format: double
+          example: 38000.0
+        detalles:
+          type: array
+          description: Detalles de la venta
+          items:
+            $ref: "#/components/schemas/DetalleVentaDTO"
+      description: DTO que representa la respuesta al consultar una venta
+    DatosDeVentaPorDiaDTO:
+      type: object
+      properties:
+        fecha:
+          type: string
+          format: date
+        montoAcumulado:
+          type: number
+          format: double
+        cantidadVentas:
+          type: integer
+          format: int32
+    MayorVentaDTO:
+      type: object
+      properties:
+        id_venta:
+          type: integer
+          format: int64
+        total:
+          type: number
+          format: double
+        cantidadProductos:
+          type: integer
+          format: int32
+        nombre_apellido:
+          type: string
