@@ -72,7 +72,7 @@ Desde ahí podés visualizar todos los endpoints disponibles, probar las peticio
 También podés usar Postman para probar los endpoints. Para eso:
 
 1. Abrí Postman.
-2. Importá la colección incluida en el proyecto (`/postman/bazar.postman_collection.json`).
+2. Importá la colección incluida en el proyecto (`/postman/Bazar API.postman_collection.json`).
 3. Asegurate de que el entorno de la API esté apuntando a:  
    `http://localhost:8080`
 4. Ejecutá las peticiones disponibles y observá las respuestas.
@@ -81,4 +81,4 @@ También podés usar Postman para probar los endpoints. Para eso:
 
 **Segundo Oostdijk**  
 Desarrollador Backend  
-Proyecto final - Curso de Desarrollo de Apis con Spring Boot - TodoCode
+Proyecto final - Curso de Desarrollo de APIs con Spring Boot - TodoCode
